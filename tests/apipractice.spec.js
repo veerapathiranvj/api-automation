@@ -66,10 +66,13 @@ test.only("chatgpt task",async({request})=>{
      const link= await request.get('https://jsonplaceholder.typicode.com/users');
      expect(link.status()).toBe(200)
      console.log(await link.json());
-       
-
-
-     expect(link).toHaveProperty('id');
-expect(link).toHaveProperty('name');
-expect(link).toHaveProperty('email');
+      
+     const links=await link.json()
+      
+     //expect(links).toHaveproperty('length',10);
+for (const link of links) {
+    expect(link).toHaveProperty('id');
+    expect(link).toHaveProperty('name');
+    expect(link).toHaveProperty('email'); 
+}
 })
