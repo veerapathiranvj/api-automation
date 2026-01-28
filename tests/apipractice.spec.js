@@ -8,7 +8,7 @@ test('api get', async ({ request }) => {
 
 })
 
-test('api post request', async ({request}) => {
+test('api post request', async ({ request }) => {
      const response = await request.post('https://automationexercise.com/api/searchProduct', {
           form: {
                search_product: "top"
@@ -59,20 +59,23 @@ test('api invalid login', async ({ request }) => {
      })
      expect(invalid.status()).toBe(200);
      console.log(await invalid.json())
-})  
+})
 
 
-test.only("chatgpt task",async({request})=>{
-     const link= await request.get('https://jsonplaceholder.typicode.com/users');
+test.only("chatgpt task", async ({ request }) => {
+     const link = await request.get('https://jsonplaceholder.typicode.com/users');
      expect(link.status()).toBe(200)
      console.log(await link.json());
-      
-     const links=await link.json()
-      
+
+     const links = await link.json();
+     expect(links.length).toBe(10)
+
+
      //expect(links).toHaveproperty('length',10);
-for (const link of links) {
-    expect(link).toHaveProperty('id');
-    expect(link).toHaveProperty('name');
-    expect(link).toHaveProperty('email'); 
-}
+     for (const link of links) {
+          expect(link).toHaveProperty('id');
+          expect(link).toHaveProperty('name');
+          expect(link).toHaveProperty('email');
+          expect(link).toHaveProperty('address');
+     }
 })
