@@ -4,6 +4,7 @@ test("put request",async({request})=>{
     expect(response.status()).toBe(200); 
 
     console.log(await response.json());
+    console.log("result:",response.json());
 
 
 
